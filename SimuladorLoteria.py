@@ -1,6 +1,6 @@
 import random, os
 
-os.system('mode con cols=38 lines=15')
+os.system('mode con cols=48 lines=24')
 os.system('cls')
 
 print("=== Simulador de Jogos na Loteria ===")
@@ -35,7 +35,7 @@ def joga():
 
 	while jogo != sorteio:
 
-		#Descomente para jogar com numeros aleatorios
+		# Descomente para jogar com numeros aleatorios
 		#crialista()
 		#jogo.clear()
 		#for i in range(6):
@@ -64,7 +64,8 @@ def joga():
 			quina = quina + 1
 			atualiza = 1
 
-
+		if acertos == 6:
+			atualiza = 1
 	
 		if atualiza == 1:
 			os.system('cls')
