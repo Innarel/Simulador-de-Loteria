@@ -35,7 +35,7 @@ def joga():
 
 	while jogo != sorteio:
 
-		# Descomente para jogar com numeros aleatorios
+		#Descomente para jogar com numeros aleatorios
 		#crialista()
 		#jogo.clear()
 		#for i in range(6):
