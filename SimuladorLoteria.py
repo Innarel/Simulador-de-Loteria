@@ -1,5 +1,6 @@
 import random, os
 
+os.system('mode con cols=38 lines=15')
 os.system('cls')
 
 print("=== Simulador de Jogos na Loteria ===")
@@ -69,15 +70,15 @@ def joga():
 			os.system('cls')
 			print("=== Simulador de Jogos na Loteria ===")
 			print("")
-			print("O algoritmo esta tentando ganhar. Aguarde uma pequena eternidade...")
+			print("O algoritmo esta tentando ganhar.\nAguarde uma pequena eternidade...")
 			print("")
-			print(jogo)
-			print(sorteio)
+			print('Aposta: '+str(jogo))
+			print('Sorteio: '+str(sorteio))
 			print('')
 			print('Quadras: ',quadra)
 			print('Quinas: ',quina)
 			print('')
-			print(qtd)
+			print('Tentativas: '+str(qtd))
 			atualiza = 0
 
 joga()
