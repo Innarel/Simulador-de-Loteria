@@ -14,6 +14,7 @@ qtd = 0
 quadra = 0
 quina = 0
 acertos = 0
+atualiza = 0
 
 def crialista():
 	
@@ -28,7 +29,8 @@ def joga():
 	qtd = 0
 	quadra = 0
 	quina = 0
-	acertos = 0	
+	acertos = 0
+	atualiza = 0	
 
 	while jogo != sorteio:
 
@@ -55,18 +57,27 @@ def joga():
 				
 		if acertos == 4:
 			quadra = quadra + 1
+			atualiza = 1
 				
 		if acertos == 5:
 			quina = quina + 1
+			atualiza = 1
 
-		os.system('cls')
+
 	
-		print(jogo)
-		print(sorteio)
-		print('')
-		print('Quadras: ',quadra)
-		print('Quinas: ',quina)
-		print('')
-		print(qtd)
+		if atualiza == 1:
+			os.system('cls')
+			print("=== Simulador de Jogos na Loteria ===")
+			print("")
+			print("O algoritmo esta tentando ganhar. Aguarde uma pequena eternidade...")
+			print("")
+			print(jogo)
+			print(sorteio)
+			print('')
+			print('Quadras: ',quadra)
+			print('Quinas: ',quina)
+			print('')
+			print(qtd)
+			atualiza = 0
 
 joga()
