@@ -11,6 +11,9 @@ lista = []
 jogo = []
 sorteio = []
 qtd = 0
+quadra = 0
+quina = 0
+acertos = 0
 
 def crialista():
 	
@@ -22,7 +25,10 @@ def joga():
 	
 	jogo = [4,8,15,16,23,42]
 	sorteio = [2]
-	qtd = 0	
+	qtd = 0
+	quadra = 0
+	quina = 0
+	acertos = 0	
 
 	while jogo != sorteio:
 
@@ -41,12 +47,26 @@ def joga():
 		sorteio.sort()
 
 		qtd += 1
+		
+		acertos = 0
+		for i in range(6):
+			if sorteio[i] in jogo:
+				acertos = acertos + 1
+				
+		if acertos == 4:
+			quadra = quadra + 1
+				
+		if acertos == 5:
+			quina = quina + 1
 
-	os.system('cls')
-
-	print(jogo)
-	print(sorteio)
-	print('')
-	print(qtd)
+		os.system('cls')
+	
+		print(jogo)
+		print(sorteio)
+		print('')
+		print('Quadras: ',quadra)
+		print('Quinas: ',quina)
+		print('')
+		print(qtd)
 
 joga()
