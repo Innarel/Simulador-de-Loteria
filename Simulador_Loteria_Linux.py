@@ -80,5 +80,7 @@ def joga():
 			print('')
 			print('Tentativas: '+str(qtd))
 			atualiza = 0
+			
+	print('\nFinalmente acertou a Sena!!!')
 
 joga()
