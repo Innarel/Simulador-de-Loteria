@@ -51,7 +51,9 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
+  button1.Enabled:=false;
   Joga();
+  button1.Enabled:=true;
 end;
 
 procedure TForm1.Joga();
@@ -123,7 +125,8 @@ begin
 			memo1.clear;
 			memo1.lines.add('=== Simulador de Jogos na Loteria ===');
 			memo1.lines.add('');
-			memo1.lines.add('O algoritmo esta tentando ganhar.'+#13+'Aguarde uma pequena eternidade...');
+			memo1.lines.add('O algoritmo esta tentando ganhar. ');
+      memo1.lines.add('Aguarde uma pequena eternidade...');
 			memo1.lines.add('');
       jogotxt := '';
       for i := 0 to 5 do
