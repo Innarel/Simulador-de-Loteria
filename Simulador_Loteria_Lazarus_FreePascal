@@ -1,0 +1,158 @@
+unit Unit1;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+
+type
+
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Jogo: TListBox;
+    Sorteio: TListBox;
+    Memo1: TMemo;
+    procedure Button1Click(Sender: TObject);
+    procedure CriaLista();
+    procedure Joga();
+    procedure FormCreate(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+
+  end;
+
+var
+  Form1: TForm1;
+  lista: array[1..60] of integer;
+  //jogo, sorteio: array[1..6] of integer;
+  qtd, quadra, quina, acertos, atualiza: integer;
+
+implementation
+
+{$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.CriaLista;
+var
+  i: integer;
+begin
+  for i := 1 to 60 do
+  begin
+    lista[i] := i;
+  end;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Joga();
+end;
+
+procedure TForm1.Joga();
+var
+  i, j, listapos: integer;
+  jogotxt, sorteiotxt: string;
+begin
+  jogo.clear;
+  jogo.Items.Add('0'+inttostr(4));
+  jogo.Items.Add('0'+inttostr(8));
+  jogo.Items.Add(inttostr(15));
+  jogo.Items.Add(inttostr(16));
+  jogo.Items.Add(inttostr(23));
+  jogo.Items.Add(inttostr(42));
+	qtd := 0;
+	quadra := 0;
+	quina := 0;
+	acertos := 0;
+	atualiza := 0;
+
+	repeat
+
+		//Descomente para jogar com numeros aleatorios
+		//crialista()
+		//jogo.clear()
+		//for i in range(6):
+			//jogo.append(lista.pop(random.randrange(0,len(lista))))
+
+		crialista();
+    sorteio.Clear;
+		for i := 0 to 5 do
+    begin
+      repeat listapos := random(60)+1 until lista[listapos] > 0;
+      if lista[listapos] > 0 then
+      begin
+        if lista[listapos] > 9 then
+          sorteio.items.add(inttostr(lista[listapos])) else
+          sorteio.items.add('0'+inttostr(lista[listapos]));
+          lista[listapos] := 0;
+      end;
+    end;
+
+		qtd := qtd + 1;
+
+		acertos := 0;
+		for i := 0 to 5 do
+      for j := 0 to 5 do
+        if sorteio.Items[i] = jogo.items[j] then
+	  		 	acertos := acertos + 1;
+
+		if acertos = 4 then
+    begin
+			quadra := quadra + 1;
+			atualiza := 1;
+    end;
+
+		if acertos = 5 then
+    begin
+			quina := quina + 1;
+			atualiza := 1;
+    end;
+
+		if acertos = 6 then
+			atualiza := 1;
+
+		if atualiza = 1 then
+    begin
+			memo1.clear;
+			memo1.lines.add('=== Simulador de Jogos na Loteria ===');
+			memo1.lines.add('');
+			memo1.lines.add('O algoritmo esta tentando ganhar.'+#13+'Aguarde uma pequena eternidade...');
+			memo1.lines.add('');
+      jogotxt := '';
+      for i := 0 to 5 do
+        jogotxt := jogotxt + jogo.items[i] + ', ';
+      sorteiotxt := '';
+      for i := 0 to 5 do
+        sorteiotxt := sorteiotxt + sorteio.items[i] + ', ';
+      memo1.lines.add('Aposta: '+jogotxt);
+      memo1.lines.add('Sorteio: '+sorteiotxt);
+			memo1.lines.add('');
+			memo1.lines.add('Quadras: '+inttostr(quadra));
+			memo1.lines.add('Quinas: '+inttostr(quina));
+			memo1.lines.add('');
+			memo1.lines.add('Tentativas: '+inttostr(qtd));
+			atualiza := 0;
+      Application.ProcessMessages;
+    end;
+
+  until jogo.Items = sorteio.Items;
+
+	memo1.lines.add('\nFinalmente acertou a Sena!!!')
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  randomize;
+  memo1.Clear;
+  CriaLista();
+end;
+
+
+
+end.
