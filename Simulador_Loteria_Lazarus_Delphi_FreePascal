@@ -83,12 +83,6 @@ begin
 
   repeat
 
-		//Descomente para jogar com numeros aleatorios
-		//crialista()
-		//jogo.clear()
-		//for i in range(6):
-			//jogo.append(lista.pop(random.randrange(0,len(lista))))
-
     crialista();
     sorteio.Clear;
     for i := 0 to 5 do
