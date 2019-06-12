@@ -1,6 +1,6 @@
 Simulador de Loteria
 
-Programa em Python onde o computador simula um jogador em repetidas tentativas de ganhar na loteria.
+Neste programa o computador simula um jogador em repetidas tentativas de ganhar na loteria.
 Muito bom para ter noção da dificuldade que é para ganhar.
 
 Os sorteios ocorrem de forma aleatória e as apostas podem ser fixadas ou aleatórias.
