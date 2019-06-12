@@ -5,7 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  ComCtrls;
 
 type
 
@@ -14,6 +15,7 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Jogo: TListBox;
+    ProgressBar1: TProgressBar;
     Sorteio: TListBox;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
@@ -51,9 +53,11 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
+  button1.caption := 'AGUARDE...';
   button1.Enabled:=false;
   Joga();
   button1.Enabled:=true;
+  button1.Caption:='INICIAR';
 end;
 
 procedure TForm1.Joga();
@@ -68,6 +72,7 @@ begin
   jogo.Items.Add(inttostr(16));
   jogo.Items.Add(inttostr(23));
   jogo.Items.Add(inttostr(42));
+  progressbar1.Position:=0;
   qtd := 0;
   quadra := 0;
   quina := 0;
@@ -99,6 +104,7 @@ begin
     end;
 
     qtd := qtd + 1;
+    progressbar1.Position:=qtd;
 
     acertos := 0;
     for i := 0 to 5 do
@@ -156,7 +162,5 @@ begin
   memo1.Clear;
   CriaLista();
 end;
-
-
 
 end.
