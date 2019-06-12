@@ -70,7 +70,9 @@ begin
 	quadra := 0;
 	quina := 0;
 	acertos := 0;
-	atualiza := 0;
+	atualiza := 1;
+  jogotxt := '0';
+  sorteiotxt := '1';
 
 	repeat
 
@@ -105,9 +107,8 @@ begin
 		if acertos = 4 then
     begin
 			quadra := quadra + 1;
-			atualiza := 1;
-    end;
-
+			atualiza := 0;
+    end else
 		if acertos = 5 then
     begin
 			quina := quina + 1;
@@ -141,9 +142,9 @@ begin
       Application.ProcessMessages;
     end;
 
-  until jogo.Items = sorteio.Items;
+  until sorteiotxt = jogotxt;
 
-	memo1.lines.add('\nFinalmente acertou a Sena!!!')
+	memo1.lines.add('Finalmente acertou a Sena!!!')
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
